@@ -169,8 +169,8 @@ class chisquare:
         self.v = v.rsplit(',')
         self.f = f
         self.df = df
-        args = inspect.getargspec(f)[0]
-        if args != inspect.getargspec(df)[0]:
+        args = inspect.getfullargspec(f)[0]
+        if args != inspect.getfullargspec(df)[0]:
             raise ChiExpError(f'Unexpected f and df: arguments do not match')
         self.pars = []
         for vn in args:
