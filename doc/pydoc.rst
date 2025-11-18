@@ -4,7 +4,7 @@
 Python documentation
 ====================
 
-The package `chiexp` can be loaded in python using the
+The package `chiexp` can be loaded in Python using the
 standard import command::
 
    import sys
@@ -21,8 +21,8 @@ The chisquare class
 Examples of usage
 -----------------
 
-First we define a new instance of the `chisquare` class; in the 
-following example we do it for an uncorrelated fit
+First, we define a new instance of the `chisquare` class; in the 
+following example, we do it for an uncorrelated fit
 
 .. code-block:: python
 
@@ -37,9 +37,8 @@ following example we do it for an uncorrelated fit
    c=chisquare(x,y,W,func,dfunc)
 
 
-If the minimum of :math:`\chi^2` is not know the user can use the 
-``fit`` method; otherwise the values of 
-the parameters at the minimum can be passed to the class
+If the minimum of :math:`\chi^2` is not known, the user can use the 
+``fit`` method; otherwise, the parameter values at the minimum can be passed to the class
 via the ``chisq`` method
 
 .. code-block:: python
@@ -53,9 +52,9 @@ via the ``chisq`` method
 
 The user can also compute the error of the fitted 
 parameters from the errors (fluctuations) of the input 
-observables :math:`Y`. To do so the derivatives 
+observables :math:`Y`. To do so, the derivatives 
 :math:`d p_\alpha / d y_i` (defined at the minimum of 
-the :math:`\chi^2`) are needed and if the covariance
+the :math:`\chi^2`) are needed. If the covariance
 matrix is known, applying the chain rule returns the wanted
 errors
 
@@ -73,35 +72,35 @@ method `chiexp`
   >>> [ce, dce, _] = c.chiexp(cov)
   >>> # if cov contains the fluctuations of M configs and 2 replica
   >>> (M, N) = numpy.shape(cov)
-  >>> nr = [N1 N2] # such that M=N1+N2
+  >>> nr = [N1, N2] # such that M=N1+N2
   >>> print M - sum(nr)
   0
   >>> [ce,dce,covest] = c.chiexp(cov,Nrep=nr,Stau=2.5)
 
 
-.. The input argument `cov` can be either a matrix (`list`
+.. The input argument `cov` can be a matrix (`list`
    or `numpy.ndarray`) of dimensions NxN or a matrix 
-   of dimensions MxN. In the first case the program 
+   of dimensions MxN. In the first case, the program 
    assumes that `cov` corresponds to the covariance matrix
-   previously estimated by the user. In the second case
-   the program assumes that `cov` contains the fluctuations
+   previously estimated by the user. In the second case,
+   the program assumes `cov` contains the fluctuations
    of the observable `y` (mean value subtracted from each
    measurement) over M different configurations: here 
    the programs computes a *derived autocorrelation function*
    that is used to estimate :math:`\langle\chi^2\rangle` and its error.
 
-Finally the quality of fit is estimated from a Monte-Carlo
+Finally, the quality of fit is estimated from a Monte-Carlo
 chain of length `nmc`
 
 .. code-block:: python
 
   >>> nmc=10000
-  >>> [p, dp, h] = c.pvalue(nmc, plot=True)
+  >>> [p, dp, h] = c.pvalue('eig', nmc, plot=True)
 
 
 The method `pvalue` returns the quality of fit and its error,
 `p` and `dp` respectively, and the Monte Carlo history of 
-:math:`\chi^2` `h`. If the `plot` flag is activated a plot is automatically
+:math:`\chi^2` `h`. If the `plot` flag is activated, a plot is automatically
 generated with the distribution probability, namely a
 normalized histogram of `h`.
 
