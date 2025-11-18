@@ -26,13 +26,15 @@ following example, we do it for an uncorrelated fit
 
 .. code-block:: python
 
+   import numpy as np
+
    [x, y, dy] = load_your_data_set() 
    
    # if dy is the error of y we define W for an uncorrelated fit
    W = [1./e**2 for e in dy]
    
-   func = lambda x, a, m: a*exp(-m*x)
-   dfunc = lambda x, a, m: [exp(-m*x), -a*x*exp(-m*x)]
+   func = lambda x, a, m: a*np.exp(-m*x)
+   dfunc = lambda x, a, m: [np.exp(-m*x), -a*x*np.exp(-m*x)]
 
    c=chisquare(x,y,W,func,dfunc)
 
